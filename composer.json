@@ -1,0 +1,32 @@
+{
+    "name": "flabib/xray",
+    "description": "This package inspired by spatie/ray",
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Flabib\\XRay\\": "src/"
+        },
+        "files": [
+            "src/helpers.php"
+        ]
+    },
+    "authors": [
+        {
+            "name": "Flabib",
+            "email": "fahdilabib@gmail.com"
+        }
+    ],
+    "require": {
+        "php": "^8.0",
+        "illuminate/support": "^9.21",
+        "guzzlehttp/guzzle": "^7.4"
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Flabib\\XRay\\XRayServiceProvider"
+            ]
+        }
+    }
+}
