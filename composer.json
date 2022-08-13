@@ -28,5 +28,7 @@
                 "Flabib\\XRay\\XRayServiceProvider"
             ]
         }
-    }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
 }
