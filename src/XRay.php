@@ -30,7 +30,7 @@ class XRay
 
         try {
             $this->client->request('POST', '/xray', [
-                'json' => $this->payload->toJson(),
+                'json' => $this->payload->toArray(),
                 'headers' => [
                     'x-ray-key' => '@dev'
                 ]
