@@ -2,28 +2,30 @@
 
 namespace Flabib\XRay;
 
-use GuzzleHttp\Client;
-use GuzzleHttp\Exception\GuzzleException;
+use Flabib\XRay\Payloads\StringPayload;
 
 class XRay
 {
-    public function message(string $message)
+    protected $client, $payload;
+
+    public function __construct()
     {
-        $port = config('xray.port');
-        $client  = new Client([
-            'base_uri' => "http://localhost:$port/"
-        ]);
+        $this->client = Client::factory();
+    }
 
-        $caller = debug_backtrace()[1];
+    public function send(...$arguments): self
+    {
+        if (count($arguments) != 1) return $this;
 
-        $json = [
-            'backtrace' => $caller['file'] . ':' . $caller['line'],
-            'message' => $message,
-        ];
+        $argument = $arguments[0];
+
+        if (is_string($argument)) {
+            $this->payload = new StringPayload($argument);
+        }
 
         try {
-            $res = $client->request('POST', '/xray', [
-                'json' => $json,
+            $res = $this->client->request('POST', '/xray', [
+                'json' => $this->payload->toArray(),
                 'headers' => [
                     'x-ray-key' => '@dev'
                 ]
