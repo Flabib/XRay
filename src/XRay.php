@@ -24,21 +24,14 @@ class XRay
         }
 
         try {
-            $res = $this->client->request('POST', '/xray', [
+            $this->client->request('POST', '/xray', [
                 'json' => $this->payload->toArray(),
                 'headers' => [
                     'x-ray-key' => '@dev'
                 ]
             ]);
+        } catch (GuzzleException $e) {}
 
-            return response()->json([
-                'code' => $res->getStatusCode(),
-                'message' => $res->getReasonPhrase()
-            ]);
-        } catch (GuzzleException $e) {
-            return response()->json([
-                'error' => $e->getMessage()
-            ], status: 500);
-        }
+        return $this;
     }
 }
