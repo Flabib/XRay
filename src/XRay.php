@@ -2,6 +2,7 @@
 
 namespace Flabib\XRay;
 
+use Flabib\XRay\Payloads\ArrayPayload;
 use Flabib\XRay\Payloads\StringPayload;
 
 class XRay
@@ -21,6 +22,10 @@ class XRay
 
         if (is_string($argument)) {
             $this->payload = new StringPayload($argument);
+        }
+
+        if (is_array($argument)) {
+            $this->payload = new ArrayPayload($argument);
         }
 
         try {
