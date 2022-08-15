@@ -5,8 +5,8 @@ namespace Flabib\XRay;
 class Config
 {
     const config = [
-        'PORT' => 1945,
-        'HOST' => 'localhost'
+        'port' => 1945,
+        'host' => 'localhost'
     ];
 
     public static function get(string $key) {
