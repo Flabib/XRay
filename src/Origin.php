@@ -6,7 +6,7 @@ class Origin
 {
     public static function factory()
     {
-        $caller = debug_backtrace()[1];
+        $caller = debug_backtrace()[4];
 
         return [
             'backtrace' => $caller['file'] . ':' . $caller['line'],
