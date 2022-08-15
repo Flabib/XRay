@@ -23,6 +23,10 @@ class XRay
             $this->payload = new StringPayload($argument);
         }
 
+        if (is_array($argument)) {
+
+        }
+
         try {
             $this->client->request('POST', '/xray', [
                 'json' => $this->payload->toArray(),
