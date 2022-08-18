@@ -23,7 +23,7 @@ class ArgumentPayload extends Payload
         foreach ($this->arguments as $argument) {
             $content = PayloadFactory::factory($argument)->toArray();
 
-            unset($contents["origin"]);
+            unset($content["origin"]);
             array_push($contents, $content);
         }
 
