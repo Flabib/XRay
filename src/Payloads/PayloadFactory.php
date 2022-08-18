@@ -13,7 +13,7 @@ class PayloadFactory
         $argument = $arguments[0];
 
         if (is_string($argument)) {
-            $payload = new ArgumentPayload($argument);
+            $payload = new StringPayload($argument);
         }
 
         if (is_array($argument)) {
