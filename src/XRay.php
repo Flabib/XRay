@@ -3,7 +3,8 @@
 namespace Flabib\XRay;
 
 use Flabib\XRay\Payloads\ArrayPayload;
-use Flabib\XRay\Payloads\StringPayload;
+use Flabib\XRay\Payloads\PayloadFactory;
+use Flabib\XRay\Payloads\ArgumentPayload;
 
 class XRay
 {
@@ -16,17 +17,7 @@ class XRay
 
     public function send(...$arguments): self
     {
-        if (count($arguments) != 1) return $this;
-
-        $argument = $arguments[0];
-
-        if (is_string($argument)) {
-            $this->payload = new StringPayload($argument);
-        }
-
-        if (is_array($argument)) {
-            $this->payload = new ArrayPayload($argument);
-        }
+        $this->payload = PayloadFactory::factory(...$arguments);
 
         try {
             $this->client->request('POST', '/xray', [
