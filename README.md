@@ -10,17 +10,6 @@ If you already downloaded the [XRay-Server](https://github.com/Flabib/XRay-Serve
 composer require flabib/xray
 ```
 
-2. Add the `\Flabib\XRay\XRayServiceProvider::class` to your `config/app.php` file:
-```php
-<?php
-
-return [
-    'providers' => [
-        \Flabib\XRay\XRayServiceProvider::class,
-    ],
-];
-```
-
-3. Publish the configuration by running `php artisan vendor:publish` and select the `\Flabib\XRay\XRayServiceProvider`.
+2. Publish the configuration by running `php artisan vendor:publish --provider=Flabib\XRay\XRayServiceProvider`.
 
 By default, no extra configuration is needed to run the package. You can use it simply by using `xray(...$args)`. Enjoy the package.
