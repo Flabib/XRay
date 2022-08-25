@@ -13,7 +13,9 @@ abstract class Payload
         return [
             'origin' => $this->getOrigin(),
             'content' => $this->getContent(),
-            'type' => $this->getType(),
+            'meta' => [
+                'type' => $this->getType(),
+            ],
         ];
     }
 
