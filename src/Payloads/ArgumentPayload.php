@@ -24,7 +24,7 @@ class ArgumentPayload extends Payload
             $content = PayloadFactory::factory($argument)->toArray();
 
             unset($content["origin"]);
-            array_push($contents, $content);
+            $contents[] = $content;
         }
 
         return $contents;

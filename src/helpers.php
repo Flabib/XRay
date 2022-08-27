@@ -1,6 +1,7 @@
 <?php
 
 use Flabib\XRay\XRay;
+use Illuminate\Contracts\Container\BindingResolutionException;
 
 if (! function_exists('xray')) {
     /**
@@ -13,7 +14,7 @@ if (! function_exists('xray')) {
         // TODO: Create Package For Laravel
         if (class_exists(XRay::class)) {
             try {
-                return app(XRay::class)->send(...$args);
+                return app(XRay::class)->args(...$args);
             } catch (BindingResolutionException $exception) {
                 // this  exception can occur when requiring spatie/ray in an Orchestra powered
                 // testsuite without spatie/laravel-ray's service provider being registered
@@ -23,6 +24,6 @@ if (! function_exists('xray')) {
 
         $xrayClass = XRay::class;
 
-        return (new $xrayClass())->send(...$args);
+        return (new $xrayClass())->args(...$args);
     }
 }

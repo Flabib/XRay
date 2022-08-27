@@ -5,9 +5,14 @@ namespace Flabib\XRay;
 use Flabib\XRay\Payloads\ArrayPayload;
 use Flabib\XRay\Payloads\PayloadFactory;
 use Flabib\XRay\Payloads\ArgumentPayload;
+use Flabib\XRay\Traits\XRayColors;
+use GuzzleHttp\Exception\GuzzleException;
+use voku\helper\ASCII;
 
 class XRay
 {
+    use XRayColors;
+
     protected $client, $payload;
 
     public function __construct()
@@ -15,10 +20,15 @@ class XRay
         $this->client = Client::factory();
     }
 
-    public function send(...$arguments): self
+    public function args(...$arguments): self
     {
         $this->payload = PayloadFactory::factory(...$arguments);
 
+        return $this;
+    }
+
+    public function send(): void
+    {
         try {
             $this->client->request('POST', '/xray', [
                 'json' => $this->payload->toArray(),
@@ -27,7 +37,5 @@ class XRay
                 ]
             ]);
         } catch (GuzzleException $e) {}
-
-        return $this;
     }
 }

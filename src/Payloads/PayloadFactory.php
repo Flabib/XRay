@@ -8,16 +8,16 @@ class PayloadFactory
     {
         $payload = null;
 
-        if (count($arguments) != 1) return new ArgumentPayload(...$arguments);
-
-        $argument = $arguments[0];
-
-        if (is_string($argument)) {
-            $payload = new StringPayload($argument);
+        if (count($arguments) != 1) {
+            $payload = new ArgumentPayload(...$arguments);
         }
 
-        if (is_array($argument)) {
-            $payload = new ArrayPayload($argument);
+        if (is_string($arguments[0])) {
+            $payload = new StringPayload($arguments[0]);
+        }
+
+        if (is_array($arguments[0])) {
+            $payload = new ArrayPayload($arguments[0]);
         }
 
         return $payload;

@@ -3,9 +3,12 @@
 namespace Flabib\XRay\Payloads;
 
 use Flabib\XRay\Origin;
+use voku\helper\ASCII;
 
 abstract class Payload
 {
+    protected ?string $color = null;
+
     abstract public function getType(): string;
 
     public function toArray(): array
@@ -15,6 +18,7 @@ abstract class Payload
             'content' => $this->getContent(),
             'meta' => [
                 'type' => $this->getType(),
+                'color' => $this->color ?: 'gray',
             ],
         ];
     }
@@ -32,5 +36,15 @@ abstract class Payload
     public function getContent(): array
     {
         return [];
+    }
+
+    public function getColor(): string
+    {
+        return $this->color;
+    }
+
+    public function setColor(string $color): void
+    {
+        $this->color = $color;
     }
 }
